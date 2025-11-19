@@ -155,7 +155,7 @@ Then open `http://localhost:8000/index.php`.
 
 ## 📄 License
 
-Specify the license (MIT, GPL-3.0, etc.).
+MIT
 
 ---
 
