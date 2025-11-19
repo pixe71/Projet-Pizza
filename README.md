@@ -1,26 +1,18 @@
-# Projet-Pizza
+# **PROJETPIZZA 🍕**
 
-<think>
-**Preparing Markdown content**
+**The entire web interface is currently in French.**
 
-The user wants the code formatted in Markdown, likely to copy-paste easily. They’ve previously received a README content, so I need to ensure I deliver that as a Markdown code block. I'll include necessary elements like headings, badges if applicable, and instructions, while also incorporating French language as requested. I think it's best to provide a concise yet complete output in a single code block, along with a screenshot of the tree matching. Let's get that ready!
-</think>
+PHP application for pizza order management with an admin area.
 
-```markdown
-# PROJETPIZZA 🍕
+## 🚀 Features
 
-Application PHP pour la prise de commandes de pizzas avec espace administrateur.
+* Customer-side order creation and tracking
+* Authentication (login/logout)
+* Order history
+* Admin area: dashboard, daily orders, order details, statistics
 
-## 🚀 Fonctionnalités
+## 🗂️ Project Structure
 
-- Création et suivi de commande côté client
-- Authentification (login/logout)
-- Historique de mes commandes
-- Espace admin : tableau de bord, commandes du jour, détails, statistiques
-
-## 🗂️ Arborescence
-
-```
 ```
 PROJETPIZZA/
 ├─ admin/
@@ -38,26 +30,26 @@ PROJETPIZZA/
 ├─ logout.php
 └─ mes_commandes.php
 ```
-```
-- `config/database.php` : connexion PDO/MySQL (hôte, base, user, mdp).
-- `config/auth.php` : helpers d’authentification (session, rôles).
-- `index.php` : page d’accueil / liste des pizzas.
-- `commander.php` : création d’une commande.
-- `detail_commande.php` : détails d’une commande (côté client).
-- `mes_commandes.php` : historique de l’utilisateur connecté.
-- `login.php` / `logout.php` : authentification.
-- `admin/*` : vues et actions réservées à l’administrateur.
 
-## 🧰 Prérequis
+* `config/database.php`: PDO/MySQL connection (host, db, user, password).
+* `config/auth.php`: authentication helpers (session, roles).
+* `index.php`: homepage / list of pizzas.
+* `commander.php`: order creation.
+* `detail_commande.php`: order details (customer side).
+* `mes_commandes.php`: logged-in user’s order history.
+* `login.php` / `logout.php`: authentication.
+* `admin/*`: views and actions restricted to administrators.
 
-- PHP 8.x
-- MySQL/MariaDB
-- Serveur web (Apache/Nginx) ou serveur embarqué PHP
-- Composer (si des dépendances existent)
+## 🧰 Requirements
+
+* PHP 8.x
+* MySQL/MariaDB
+* Web server (Apache/Nginx) or PHP built-in server
+* Composer (if dependencies are used)
 
 ## ⚙️ Configuration
 
-1) Créer la base de données et importer le schéma (exemple minimal à adapter) :
+1. Create the database and import the schema (minimal example to adapt):
 
 ```sql
 CREATE TABLE users (
@@ -96,7 +88,7 @@ CREATE TABLE order_items (
 );
 ```
 
-2) Renseigner les identifiants DB dans `config/database.php` :
+2. Fill in the DB credentials in `config/database.php`:
 
 ```php
 <?php
@@ -110,56 +102,61 @@ $options = [
 $pdo = new PDO($dsn, $user, $pass, $options);
 ```
 
-3) Configurer l’authentification dans `config/auth.php` (sessions, rôles, redirections).
+3. Configure authentication in `config/auth.php` (sessions, roles, redirects).
 
-## ▶️ Lancer en local
+## ▶️ Run Locally
 
-- Avec le serveur PHP intégré :
+* Using the built-in PHP server:
+
 ```bash
 php -S localhost:8000
 ```
-Puis ouvrir `http://localhost:8000/index.php`.
 
-- Ou via Apache/Nginx en pointant le VirtualHost sur la racine du projet.
+Then open `http://localhost:8000/index.php`.
 
-## 🔐 Bonnes pratiques sécurité
+* Or through Apache/Nginx by pointing the VirtualHost to the project root.
 
-- `password_hash()` / `password_verify()` pour les mots de passe
-- Requêtes préparées PDO et validation/assainissement des entrées
-- Contrôle d’accès par rôle pour `/admin/*`
-- Token CSRF pour les formulaires sensibles
-- Régénération d’ID de session après login
-- `display_errors=Off` en prod, logs séparés
-- HTTPS + en-têtes de sécurité (HSTS, CSP minimale)
+## 🔐 Security Best Practices
 
-## 👩‍💻 Parcours utilisateur
+* Use `password_hash()` / `password_verify()` for passwords
+* PDO prepared statements and input validation/sanitization
+* Role-based access control for `/admin/*`
+* CSRF token for sensitive forms
+* Session ID regeneration after login
+* `display_errors=Off` in production, separate log files
+* HTTPS + security headers (HSTS, minimal CSP)
 
-- Visiteur : consulte `index.php`, choisit des pizzas, passe commande via `commander.php`
-- Utilisateur connecté : suit ses commandes dans `mes_commandes.php`, voit `detail_commande.php`
-- Admin : `admin/dashboard.php`, `admin/commandes_jour.php`, `admin/details_commande.php`, `admin/stats.php`
+## 👩‍💻 User Flow
+
+* Visitor: browses `index.php`, chooses pizzas, places an order via `commander.php`
+* Logged-in user: tracks orders in `mes_commandes.php`, views `detail_commande.php`
+* Admin: `admin/dashboard.php`, `admin/commandes_jour.php`, `admin/details_commande.php`, `admin/stats.php`
 
 ## 🧪 Tests
 
-- Ajouter des tests (PHPUnit) pour `config/auth.php` et l’accès DB
-- Scénarios manuels : inscription/login, création commande, changement de statut, vues admin
+* Add tests (PHPUnit) for `config/auth.php` and database access
+* Manual scenarios: registration/login, order creation, status updates, admin views
 
-## 📦 Déploiement
+## 📦 Deployment
 
-- Variables d’environnement (DSN, user, mdp)
-- Migrations SQL
-- VHost HTTPS
-- Droits d’écriture minimaux (éviter 777)
+* Environment variables (DSN, user, password)
+* SQL migrations
+* HTTPS VirtualHost
+* Minimal write permissions (avoid 777)
 
 ## 🗺️ Roadmap / TODO
 
-- Panier persistant
-- Emails de confirmation
-- Filtrage/recherche des commandes
-- Export CSV côté admin
-- Graphiques de stats
-- Internationalisation (i18n)
+* Persistent cart
+* Confirmation emails
+* Order filtering/search
+* CSV export for admin
+* Statistics charts
+* Internationalization (i18n)
 
-## 📄 Licence
+## 📄 License
 
-Préciser la licence (MIT, GPL‑3.0, …).
-```
+Specify the license (MIT, GPL-3.0, etc.).
+
+---
+
+If you want, I can also produce a **fully English README.md** formatted for GitHub.
